@@ -25,6 +25,8 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.fwupd.enable = true;
+
   services.displayManager.ly.enable = true;
   
   services.pipewire = {

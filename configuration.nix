@@ -28,6 +28,8 @@
   services.fwupd.enable = true;
 
   services.displayManager.ly.enable = true;
+
+  services.tlp.enable = true;
   
   services.pipewire = {
     enable = true;
@@ -62,12 +64,14 @@
     dig
     acpi
     awscli2
+    aws-vault
     gh
     git
     gitleaks
     lazygit
     wget
     curl
+    restish
     vim
     neovim
     eza
@@ -126,7 +130,7 @@
     imagemagick
     resvg
     zettlr
-    zoom
+    zoom-us
     discord
     telegram-desktop
     qbittorrent-enhanced

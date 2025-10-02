@@ -57,7 +57,6 @@
       _7zz = _7zz-rar;  # Support for RAR extraction
     })
     age
-    gnupg
     pinentry-curses
     pinentry-qt
     dig
@@ -139,22 +138,18 @@
 
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.hack
-    #pkgs.ttf-cascadia-code-nerd
-    #pkgs.ttf-firacode-nerd
-    #pkgs.ttf-hack-nerd
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true; # For x11 app compatibility
+    xwayland.enable = true;
   };
 
   programs.git = {

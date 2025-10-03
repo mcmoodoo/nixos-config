@@ -69,7 +69,6 @@
     dig
     acpi
     awscli2
-    aws-vault
     gh
     git
     gitleaks

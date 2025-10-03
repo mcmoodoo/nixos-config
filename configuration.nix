@@ -131,7 +131,7 @@
     upower
     marktext
     foliate
-    kdePackages.okular
+    zathura
     zellij
     just
     imagemagick

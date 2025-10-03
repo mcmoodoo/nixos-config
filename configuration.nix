@@ -14,6 +14,9 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [ "kvm-amd" ];
+
+  virtualisation.libvirtd.enable = true;
 
   networking.hostName = "defiance";
   # Pick only one of the below networking options.
@@ -44,10 +47,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mcmoodoo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-    ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
   };
 
   # programs.firefox.enable = true;
@@ -99,6 +99,9 @@
     hyprpaper
     hyprshot
     hypridle
+    qemu
+    libvirt
+    virt-manager
     xfce.thunar
     wofi
     starship

@@ -50,7 +50,11 @@
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
   };
 
-  # programs.firefox.enable = true;
+  programs.firefox.enable = true;
+
+  environment.sessionVariables = {
+    BRAVE_PASSWORD_STORE = "basic";
+  };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -59,6 +63,7 @@
       _7zz = _7zz-rar;  # Support for RAR extraction
     })
     age
+    tree
     pinentry-curses
     pinentry-qt
     dig

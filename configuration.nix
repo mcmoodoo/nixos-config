@@ -131,6 +131,7 @@
     upower
     marktext
     foliate
+    evince
     zathura
     zellij
     just

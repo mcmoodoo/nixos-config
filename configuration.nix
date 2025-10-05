@@ -33,6 +33,9 @@
   services.displayManager.ly.enable = true;
 
   services.tlp.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.hyprland.enableGnomeKeyring = true;
   
   services.pipewire = {
     enable = true;
@@ -52,9 +55,9 @@
 
   programs.firefox.enable = true;
 
-  environment.sessionVariables = {
-    BRAVE_PASSWORD_STORE = "basic";
-  };
+  # environment.sessionVariables = {
+  #   BRAVE_PASSWORD_STORE = "basic";
+  # };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -81,6 +84,7 @@
     eza
     bun
     nodejs_24
+    libsecret
     pass
     ncdu
     unzip

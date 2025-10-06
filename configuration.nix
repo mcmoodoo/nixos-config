@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
@@ -54,10 +54,6 @@
   };
 
   programs.firefox.enable = true;
-
-  # environment.sessionVariables = {
-  #   BRAVE_PASSWORD_STORE = "basic";
-  # };
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).

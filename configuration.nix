@@ -6,6 +6,8 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
@@ -72,6 +74,7 @@
     dig
     acpi
     awscli2
+    aws-vault
     gh
     git
     gitleaks
@@ -150,6 +153,7 @@
     mpv-unwrapped
     ffmpeg
     brave
+    qutebrowser
   ];
 
   fonts.packages = with pkgs; [

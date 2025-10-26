@@ -26,7 +26,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "America/New_York";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -132,6 +132,7 @@
     fd
     bat
     jq
+    fx
     ripgrep
     zoxide
     w3m

@@ -156,6 +156,7 @@
     ffmpeg
     brave
     qutebrowser
+    qrencode
   ];
 
   fonts.packages = with pkgs; [

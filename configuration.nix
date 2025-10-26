@@ -152,6 +152,7 @@
     qbittorrent-enhanced
     blueman
     mpv-unwrapped
+    obs-studio
     ffmpeg
     brave
     qutebrowser

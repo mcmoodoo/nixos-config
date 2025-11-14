@@ -25,8 +25,10 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Buenos_Aires";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -67,6 +69,7 @@
     (yazi.override {
       _7zz = _7zz-rar;  # Support for RAR extraction
     })
+    mesa-demos
     age
     tree
     pinentry-curses
@@ -87,6 +90,7 @@
     eza
     bun
     nodejs_24
+    pnpm
     libsecret
     pass
     ncdu
@@ -127,6 +131,7 @@
     ydiff
     broot
     fzf
+    file
     bottom
     btop-rocm
     fd
@@ -156,7 +161,10 @@
     ffmpeg
     brave
     qutebrowser
+    tor-browser-bundle-bin
     qrencode
+    asciinema
+    asciinema-agg
   ];
 
   fonts.packages = with pkgs; [

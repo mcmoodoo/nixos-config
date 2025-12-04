@@ -20,6 +20,9 @@
 
   virtualisation.libvirtd.enable = true;
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless.enable = true;
+
   networking.hostName = "defiance";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -28,7 +31,7 @@
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   # Set your time zone.
-  time.timeZone = "America/Buenos_Aires";
+  time.timeZone = "America/New_York";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -54,7 +57,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mcmoodoo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "docker"];
   };
 
   programs.firefox.enable = true;
@@ -106,6 +109,7 @@
     alacritty
     ghostty
     rustup
+    go
     wl-clipboard-rs
     stow
     waybar
@@ -163,8 +167,9 @@
     qutebrowser
     tor-browser-bundle-bin
     qrencode
-    asciinema
+    asciinema_3
     asciinema-agg
+    krita
   ];
 
   fonts.packages = with pkgs; [

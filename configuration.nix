@@ -87,6 +87,7 @@
     lazygit
     wget
     curl
+    xh
     restish
     vim
     neovim
@@ -105,6 +106,7 @@
     chafa
     imagemagick
     graphviz-nox
+    mermaid-cli
     nix-index
     alacritty
     ghostty
@@ -163,6 +165,7 @@
     mpv-unwrapped
     obs-studio
     ffmpeg
+    chromium
     brave
     qutebrowser
     tor-browser-bundle-bin
@@ -170,6 +173,7 @@
     asciinema_3
     asciinema-agg
     krita
+    inkscape
   ];
 
   fonts.packages = with pkgs; [

@@ -31,7 +31,7 @@
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Chicago";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -99,6 +99,7 @@
     pass
     ncdu
     unzip
+    exercism
     terraform
     fastfetch
     brightnessctl
@@ -149,6 +150,7 @@
     w3m
     upower
     marktext
+    typora
     foliate
     evince
     zathura

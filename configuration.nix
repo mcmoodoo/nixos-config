@@ -24,7 +24,13 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-amd" ];
 
-  virtualisation.libvirtd.enable = true;
+  # Libvirt configuration
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      runAsRoot = true;
+    };
+  };
 
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless.enable = true;
@@ -35,6 +41,9 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+
+  networking.firewall.enable = true;
+  # networking.firewall.allowedTCPPorts = [8001];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -73,7 +82,6 @@
   };
 
   # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
     (yazi.override {
       _7zz = _7zz-rar;  # Support for RAR extraction
@@ -84,6 +92,7 @@
     pinentry-curses
     pinentry-qt
     dig
+    nftables
     acpi
     awscli2
     aws-vault
@@ -213,6 +222,5 @@
   # system.copySystemConfiguration = true;
 
   system.stateVersion = "25.05";
-
 }
 

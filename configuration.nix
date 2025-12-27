@@ -179,6 +179,7 @@
     telegram-desktop
     qbittorrent-enhanced
     blueman
+    openshot-qt
     mpv-unwrapped
     obs-studio
     ffmpeg

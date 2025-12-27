@@ -43,7 +43,7 @@
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   networking.firewall.enable = true;
-  # networking.firewall.allowedTCPPorts = [8001];
+  networking.firewall.allowedTCPPorts = [8001];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -179,20 +179,23 @@
     telegram-desktop
     qbittorrent-enhanced
     blueman
-    openshot-qt
+    shotcut
+    # openshot-qt
+    vlc
     mpv-unwrapped
     obs-studio
     ffmpeg
     chromium
     brave
-    qutebrowser
-    tor-browser-bundle-bin
+    # qutebrowser
+    tor-browser
     qrencode
     asciinema_3
     asciinema-agg
     krita
     inkscape
   ];
+
 
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.hack
@@ -223,5 +226,8 @@
   # system.copySystemConfiguration = true;
 
   system.stateVersion = "25.05";
+
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
 }
 

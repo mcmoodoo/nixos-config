@@ -24,6 +24,15 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-amd" ];
 
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+  # boot.extraModprobeConfig = ''
+  #   options v4l2loopback video_nr=10 card_label="iPhoneCam"
+  # '';
+
+  boot.extraModulePackages = [
+      config.boot.kernelPackages.v4l2loopback.out
+  ];
+
   # Libvirt configuration
   virtualisation.libvirtd = {
     enable = true;
@@ -68,6 +77,7 @@
   services.libinput.enable = true;
 
   services.upower.enable = true;
+  services.usbmuxd.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mcmoodoo = {
@@ -104,6 +114,7 @@
     curl
     xh
     restish
+    atac
     vim
     neovim
     eza
@@ -127,6 +138,7 @@
     alacritty
     ghostty
     rustup
+    foundry
     go
     wl-clipboard-rs
     stow
@@ -164,6 +176,7 @@
     zoxide
     w3m
     upower
+    obsidian
     marktext
     typora
     foliate
@@ -181,9 +194,15 @@
     blueman
     shotcut
     # openshot-qt
+    cmus
     vlc
+    ytmdesktop
+    yt-dlp
     mpv-unwrapped
     obs-studio
+    obs-studio-plugins.droidcam-obs
+    linuxKernel.packages.linux_6_18.v4l2loopback
+    droidcam
     ffmpeg
     chromium
     brave

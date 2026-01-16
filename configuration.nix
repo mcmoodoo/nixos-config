@@ -66,7 +66,10 @@
   services.tlp.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.hyprland.enableGnomeKeyring = true;
+  # security.pam.services.hyprland.enableGnomeKeyring = true;
+  security.pam.services.ly = {
+    enableGnomeKeyring = true;
+  };
   
   services.pipewire = {
     enable = true;
@@ -101,6 +104,7 @@
     tree
     pinentry-curses
     pinentry-qt
+    xray
     dig
     nftables
     acpi
@@ -143,7 +147,9 @@
     wl-clipboard-rs
     stow
     waybar
+    # swaynotificationcenter
     mako
+    libnotify
     hyprlock
     hyprpaper
     hyprshot
@@ -195,6 +201,8 @@
     shotcut
     # openshot-qt
     cmus
+    musikcube
+    clementine
     vlc
     ytmdesktop
     yt-dlp

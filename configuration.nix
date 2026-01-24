@@ -221,6 +221,7 @@
     asciinema-agg
     krita
     inkscape
+    freecad
   ];
 
 

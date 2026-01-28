@@ -65,6 +65,10 @@
 
   services.tlp.enable = true;
 
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns4 = true;
+
   services.gnome.gnome-keyring.enable = true;
   # security.pam.services.hyprland.enableGnomeKeyring = true;
   security.pam.services.ly = {
@@ -142,7 +146,6 @@
     alacritty
     ghostty
     rustup
-    foundry
     go
     wl-clipboard-rs
     stow

@@ -112,6 +112,9 @@
     dig
     nftables
     acpi
+    s3fs
+    rclone
+    goofys
     awscli2
     aws-vault
     gh

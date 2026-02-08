@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      # ./xray-config.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -61,6 +62,8 @@
 
   services.fwupd.enable = true;
 
+  services.v2raya.enable = true;
+
   services.displayManager.ly.enable = true;
 
   services.tlp.enable = true;
@@ -112,7 +115,6 @@
     tree
     pinentry-curses
     pinentry-qt
-    xray
     dig
     nftables
     acpi

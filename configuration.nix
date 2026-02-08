@@ -103,6 +103,10 @@
     (yazi.override {
       _7zz = _7zz-rar;  # Support for RAR extraction
     })
+    sqlite
+    sqlitebrowser
+    postgresql
+    dbeaver-bin
     mesa-demos
     age
     tree

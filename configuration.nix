@@ -181,6 +181,8 @@
     uv
     lld
     ydiff
+    diff-so-fancy
+    delta
     broot
     fzf
     file

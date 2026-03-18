@@ -85,13 +85,16 @@
 
   systemd.services.ollama = {
     description = "Ollama Local Server";
-    after = [ "network.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.ollama}/bin/ollama serve";
       Restart = "always";
       RestartSec = 5;
       User = "mcmoodoo"; # run as your user
+      PrivateTmp = true;
+      NoNewPrivileges = true;
     };
     wantedBy = [ "multi-user.target" ];
   };
@@ -136,7 +139,6 @@
     goofys
     awscli2
     gh
-    git
     lazygit
     gitleaks
     trufflehog
@@ -224,7 +226,6 @@
     zellij
     firejail
     just
-    imagemagick
     resvg
     zettlr
     zoom-us

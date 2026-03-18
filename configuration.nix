@@ -42,8 +42,10 @@
     };
   };
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless.enable = true;
+  };
 
   networking.hostName = "defiance";
   # Pick only one of the below networking options.
@@ -52,8 +54,10 @@
 
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [8001];
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [8001];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -61,19 +65,17 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.fwupd.enable = true;
-
   services.v2raya.enable = true;
-
   services.displayManager.ly.enable = true;
-
   services.tlp.enable = true;
-
   services.printing.enable = true;
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-
   services.gnome.gnome-keyring.enable = true;
   # security.pam.services.hyprland.enableGnomeKeyring = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
+
   security.pam.services.ly = {
     enableGnomeKeyring = true;
   };

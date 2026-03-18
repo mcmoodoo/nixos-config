@@ -56,7 +56,6 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [8001];
   };
 
   # Set your time zone.

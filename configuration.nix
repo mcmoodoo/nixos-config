@@ -83,6 +83,19 @@
     pulse.enable = true;
   };
 
+  systemd.services.ollama = {
+    description = "Ollama Local Server";
+    after = [ "network.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.ollama}/bin/ollama serve";
+      Restart = "always";
+      RestartSec = 5;
+      User = "mcmoodoo"; # run as your user
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
@@ -110,7 +123,6 @@
     sqlitebrowser
     postgresql
     dbeaver-bin
-    mesa-demos
     age
     tree
     pinentry-curses
@@ -120,13 +132,17 @@
     acpi
     s3fs
     rclone
+    ollama
     goofys
     awscli2
-    aws-vault
     gh
     git
-    gitleaks
     lazygit
+    gitleaks
+    trufflehog
+    shellcheck
+    semgrep
+    clamav
     wget
     curl
     xh
@@ -141,6 +157,7 @@
     libsecret
     pass
     ncdu
+    libzip
     unzip
     exercism
     terraform
@@ -190,6 +207,8 @@
     btop-rocm
     fd
     bat
+    html-tidy
+    envsubst
     jq
     fx
     ripgrep
@@ -203,13 +222,14 @@
     evince
     zathura
     zellij
+    firejail
     just
     imagemagick
     resvg
     zettlr
     zoom-us
     discord
-    telegram-desktop
+    # telegram-desktop
     qbittorrent-enhanced
     blueman
     shotcut

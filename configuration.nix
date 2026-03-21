@@ -56,6 +56,20 @@
 
   networking.firewall = {
     enable = true;
+
+    # Allow container -> host traffic on the desired port range.
+    # This keeps the range closed on your external/LAN interfaces.
+    interfaces.docker0 = {
+      allowedTCPPorts = [ 3000 ];
+
+      allowedTCPPortRanges = [
+        { from = 10000; to = 65535; }
+      ];
+
+      allowedUDPPortRanges = [
+        { from = 10000; to = 65535; }
+      ];
+    };
   };
 
   # Set your time zone.

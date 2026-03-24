@@ -21,20 +21,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-amd" ];
-
-  # boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
-  # boot.extraModprobeConfig = ''
-  #   options v4l2loopback video_nr=10 card_label="iPhoneCam"
-  # '';
-
+  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
   boot.extraModulePackages = [
-      config.boot.kernelPackages.v4l2loopback.out
+    config.boot.kernelPackages.v4l2loopback.out
   ];
 
-  # Libvirt configuration
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -48,17 +40,13 @@
   };
 
   networking.hostName = "defiance";
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   networking.firewall = {
     enable = true;
 
-    # Allow container -> host traffic on the desired port range.
-    # This keeps the range closed on your external/LAN interfaces.
     interfaces.docker0 = {
       allowedTCPPorts = [ 3000 ];
 
@@ -257,7 +245,6 @@
     mpv-unwrapped
     obs-studio
     obs-studio-plugins.droidcam-obs
-    linuxKernel.packages.linux_6_18.v4l2loopback
     droidcam
     ffmpeg
     chromium

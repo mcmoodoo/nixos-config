@@ -34,10 +34,7 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    rootless.enable = true;
-  };
+  virtualisation.docker.enable = true;
 
   networking.hostName = "defiance";
   networking.networkmanager.enable = true;
@@ -94,7 +91,7 @@
       ExecStart = "${pkgs.ollama}/bin/ollama serve";
       Restart = "always";
       RestartSec = 5;
-      User = "mcmoodoo"; # run as your user
+      User = "mcmoodoo";
       PrivateTmp = true;
       NoNewPrivileges = true;
     };
@@ -117,10 +114,9 @@
     BROWSER = "brave";
   };
 
-  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     (yazi.override {
-      _7zz = _7zz-rar;  # Support for RAR extraction
+      _7zz = _7zz-rar;
     })
     sqlite
     sqlitebrowser

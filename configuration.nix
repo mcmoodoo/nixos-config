@@ -156,6 +156,7 @@
     gh
     lazygit
     lazydocker
+    lazyjournal
     gitleaks
     trufflehog
     shellcheck
@@ -177,7 +178,6 @@
     ncdu
     libzip
     unzip
-    exercism
     terraform
     fastfetch
     brightnessctl
@@ -224,6 +224,7 @@
     bat
     html-tidy
     envsubst
+    yq-go
     jq
     fx
     ripgrep

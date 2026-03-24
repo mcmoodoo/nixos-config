@@ -113,8 +113,6 @@
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "kvm" "docker"];
   };
 
-  programs.firefox.enable = true;
-
   environment.sessionVariables = {
     BROWSER = "brave";
   };

@@ -231,7 +231,7 @@
     zettlr
     zoom-us
     discord
-    # telegram-desktop
+    telegram-desktop
     qbittorrent-enhanced
     blueman
     shotcut
@@ -259,15 +259,13 @@
     freecad
   ];
 
-
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.hack
   ];
 
   programs.nix-ld.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   programs.mtr.enable = true;
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -286,11 +284,6 @@
     };
   };  
 
-  # system.copySystemConfiguration = true;
-
   system.stateVersion = "25.05";
-
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
 }
 

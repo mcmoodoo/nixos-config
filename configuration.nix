@@ -22,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
+  boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback.out
   ];

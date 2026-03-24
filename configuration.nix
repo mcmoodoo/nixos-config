@@ -155,6 +155,7 @@
     awscli2
     gh
     lazygit
+    lazydocker
     gitleaks
     trufflehog
     shellcheck
@@ -188,8 +189,6 @@
     nix-index
     alacritty
     ghostty
-    rustup
-    go
     wl-clipboard-rs
     stow
     waybar
@@ -208,7 +207,6 @@
     starship
     gcc
     gnumake
-   # readline
     lua
     luarocks-nix
     python311

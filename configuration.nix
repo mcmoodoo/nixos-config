@@ -143,6 +143,7 @@
     shellcheck
     semgrep
     clamav
+    aria2
     wget
     curl
     xh
@@ -190,6 +191,7 @@
     gnumake
     lua
     luarocks-nix
+    rustup
     python311
     uv
     lld

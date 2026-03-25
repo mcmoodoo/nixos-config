@@ -22,7 +22,7 @@
     };
 
   fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/0746b9fd-1cee-4c26-a0fd-95134824506d";
+    device = "/dev/disk/by-uuid/29abdb8c-2b7d-439f-84a4-dcc15c81d6d0";
     fsType = "ext4";
   };
 

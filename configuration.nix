@@ -143,6 +143,7 @@
     shellcheck
     semgrep
     clamav
+    rsync
     aria2
     wget
     curl

@@ -141,6 +141,7 @@
     lazyjournal
     gitleaks
     trufflehog
+    detect-secrets
     shellcheck
     semgrep
     clamav
@@ -161,6 +162,7 @@
     nodejs_24
     pnpm
     libsecret
+    openssl
     pass
     ncdu
     libzip
@@ -188,6 +190,7 @@
     hypridle
     qemu
     libvirt
+    libisoburn
     virt-manager
     xfce.thunar
     wofi

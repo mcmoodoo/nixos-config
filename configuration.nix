@@ -126,6 +126,7 @@
     tree
     pinentry-curses
     pinentry-qt
+    sniffnet
     dig
     nftables
     acpi
@@ -150,6 +151,9 @@
     xh
     restish
     atac
+    superfile
+    nnn
+    vifm
     vim
     neovim
     eza
@@ -234,6 +238,9 @@
     shotcut
     # openshot-qt
     cmus
+    kew
+    termusic
+    ytermusic
     musikcube
     clementine
     vlc

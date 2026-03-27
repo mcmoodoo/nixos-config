@@ -14,14 +14,23 @@
 
 { config, pkgs, ... }:
 
+let
+  serverAddr = "3.254.156.122";
+  serverPort = 443;
+  userId = "0a0fa7fa-82a0-4bbe-9814-dc5d563de575";
+  publicKey = "O8pDual2tmGJJMrYg2698PclvmOHgAJf1fiZH_HGDxQ";
+  shortId = "a1b2c3d4e5f60708";
+  socksPort = 1080;
+  httpPort = 8080;
+in
 {
 
   environment.sessionVariables = {
-    ALL_PROXY = "socks5h://127.0.0.1:1080";
-    all_proxy = "socks5h://127.0.0.1:1080";
+    ALL_PROXY = "socks5h://127.0.0.1:${toString socksPort}";
+    all_proxy = "socks5h://127.0.0.1:${toString socksPort}";
     # Optional: use HTTP proxy for apps that don't support SOCKS5
-    # HTTP_PROXY = "http://127.0.0.1:8080";
-    # HTTPS_PROXY = "http://127.0.0.1:8080";
+    # HTTP_PROXY = "http://127.0.0.1:${toString httpPort}";
+    # HTTPS_PROXY = "http://127.0.0.1:${toString httpPort}";
   };
 
   services.xray = {
@@ -32,7 +41,7 @@
       inbounds = [
         {
           tag = "socks";
-          port = 1080;
+          port = socksPort;
           listen = "127.0.0.1";
           protocol = "socks";
           settings = {
@@ -41,7 +50,7 @@
         }
         {
           tag = "http";
-          port = 8080;
+          port = httpPort;
           listen = "127.0.0.1";
           protocol = "http";
         }
@@ -52,10 +61,10 @@
         protocol = "vless";
         settings = {
           vnext = [{
-            address = "3.254.156.122";
-            port = 443;
+            address = serverAddr;
+            port = serverPort;
             users = [{
-              id = "0a0fa7fa-82a0-4bbe-9814-dc5d563de575";
+              id = userId;
               flow = "xtls-rprx-vision";
               encryption = "none";
             }];
@@ -66,8 +75,7 @@
           security = "reality";
           realitySettings = {
             serverName = "www.cloudflare.com";
-            publicKey = "O8pDual2tmGJJMrYg2698PclvmOHgAJf1fiZH_HGDxQ";
-            shortId = "a1b2c3d4e5f60708";
+            inherit publicKey shortId;
             fingerprint = "chrome";
           };
         };

@@ -82,6 +82,47 @@
     pulse.enable = true;
   };
 
+  systemd.services.tun2socks =
+    let
+      tunName = "tun0";
+      tunAddr = "10.0.0.1/24";
+      socksProxy = "socks5://127.0.0.1:1080";
+    in
+    {
+      description = "Transparent proxy via tun2socks";
+      after = [ "network.target" ];
+      wantedBy = [ ];
+
+      serviceConfig = {
+        Type = "simple";
+        ExecStartPre = [
+          "-${pkgs.iproute2}/bin/ip tuntap add mode tun dev ${tunName}"
+          "-${pkgs.iproute2}/bin/ip addr add ${tunAddr} dev ${tunName}"
+          "${pkgs.iproute2}/bin/ip link set ${tunName} up"
+        ];
+
+        ExecStart = ''
+          ${pkgs.tun2socks}/bin/tun2socks \
+            -device ${tunName} \
+            -proxy ${socksProxy}
+        '';
+
+        ExecStartPost = [
+          "${pkgs.iproute2}/bin/ip route add 0.0.0.0/1 dev ${tunName}"
+          "${pkgs.iproute2}/bin/ip route add 128.0.0.0/1 dev ${tunName}"
+        ];
+
+        ExecStopPost = [
+          "-${pkgs.iproute2}/bin/ip route del 0.0.0.0/1 dev ${tunName}"
+          "-${pkgs.iproute2}/bin/ip route del 128.0.0.0/1 dev ${tunName}"
+          "-${pkgs.iproute2}/bin/ip link set ${tunName} down"
+          "-${pkgs.iproute2}/bin/ip tuntap del mode tun dev ${tunName}"
+        ];
+
+        Restart = "on-failure";
+      };
+    };
+
   systemd.services.ollama = {
     description = "Ollama Local Server";
     wants = [ "network-online.target" ];
@@ -126,6 +167,7 @@
     tree
     pinentry-curses
     pinentry-qt
+    tun2socks
     sniffnet
     dig
     nftables
@@ -150,6 +192,7 @@
     wget
     curl
     xh
+    tcpdump
     restish
     atac
     superfile

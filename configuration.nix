@@ -235,6 +235,7 @@
     libvirt
     libisoburn
     virt-manager
+    libguestfs
     xfce.thunar
     wofi
     starship

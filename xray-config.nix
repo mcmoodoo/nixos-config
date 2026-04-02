@@ -1,21 +1,13 @@
 # Xray Client Configuration for NixOS
-# 
-# Usage:
-#   1. Replace YOUR_SERVER_IP with your EC2 instance's public IP
-#   2. Replace PUBLIC_KEY_HERE with the server's public key
-#      (run on server: xray x25519 -i "YC55FU-JKqGsBiMEWeHQVX3oHXDvKhfktT4RDVpKs3o")
-#   3. Import this file in your NixOS configuration.nix:
-#      imports = [ ./client-configuration.nix ];
-#   4. Run: sudo nixos-rebuild switch
 #
-# Proxies available after activation:
+# Proxies after activation:
 #   - SOCKS5: 127.0.0.1:1080
 #   - HTTP:   127.0.0.1:8080
 
 { config, pkgs, ... }:
 
 let
-  serverAddr = "3.254.156.122";
+  serverAddr = "34.251.127.221";
   serverPort = 443;
   userId = "0a0fa7fa-82a0-4bbe-9814-dc5d563de575";
   publicKey = "O8pDual2tmGJJMrYg2698PclvmOHgAJf1fiZH_HGDxQ";

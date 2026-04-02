@@ -279,6 +279,7 @@
     zettlr
     zoom-us
     discord
+    slack
     telegram-desktop
     qbittorrent-enhanced
     blueman

@@ -189,6 +189,7 @@
     hyprpaper
     hyprshot
     hypridle
+    bubblewrap
     qemu
     libvirt
     libisoburn
@@ -264,6 +265,9 @@
     qrencode
     asciinema_3
     asciinema-agg
+    xournalpp
+    # scribus
+    gimp
     krita
     inkscape
     freecad

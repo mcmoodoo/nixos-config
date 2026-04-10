@@ -1,9 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [
       ./hardware-configuration.nix
+      ./wireguard-config.nix
       # ./xray-config.nix
     ];
 
@@ -123,6 +124,7 @@
     postgresql
     dbeaver-bin
     age
+    ragenix
     tree
     pinentry-curses
     pinentry-qt
@@ -271,6 +273,7 @@
     krita
     inkscape
     freecad
+    wireguard-tools
   ];
 
   fonts.packages = with pkgs; [
@@ -300,4 +303,3 @@
 
   system.stateVersion = "25.05";
 }
-

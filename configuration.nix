@@ -122,6 +122,7 @@
     sqlite
     sqlitebrowser
     postgresql
+    supabase-cli
     dbeaver-bin
     age
     ragenix

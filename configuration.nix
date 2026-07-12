@@ -28,6 +28,14 @@
     config.boot.kernelPackages.v4l2loopback.out
   ];
 
+  # 32 GiB swap file (NixOS creates and manages it; no partition resize needed)
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32 * 1024; # size in MiB
+    }
+  ];
+
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -36,6 +44,7 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_29;
 
   networking.hostName = "defiance";
   networking.networkmanager.enable = true;
@@ -138,6 +147,7 @@
     rclone
     ollama
     goofys
+    google-cloud-sdk
     awscli2
     gh
     lazygit
@@ -179,6 +189,7 @@
     chafa
     imagemagick
     graphviz-nox
+    d2
     mermaid-cli
     nix-index
     alacritty
@@ -207,6 +218,7 @@
     lua
     luarocks-nix
     rustup
+    cargo-outdated
     python311
     uv
     lld
@@ -271,6 +283,7 @@
     asciinema-agg
     xournalpp
     # scribus
+    satty
     gimp
     krita
     inkscape

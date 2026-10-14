@@ -92,6 +92,20 @@
     pulse.enable = true;
     alsa.enable = true;
     wireplumber.enable = true;
+
+    # Make the USB mic the default capture source (beat onboard pro-input @2500).
+    wireplumber.extraConfig."51-usb-mic-priority" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            { "node.name" = "~alsa_input.usb-Generic_USB2.0_Device.*"; }
+          ];
+          actions.update-props = {
+            "priority.session" = 3000;
+          };
+        }
+      ];
+    };
   };
 
   systemd.services.ollama = {

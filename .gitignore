@@ -5,3 +5,4 @@ secrets/*.env
 /.validation/
 /result
 /result-*
+__pycache__/

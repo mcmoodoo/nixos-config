@@ -4,6 +4,51 @@ Run these commands **on the new Intel laptop only**, logged in as `reed`.
 Do not run deployment commands on `defiance`. This procedure uses the already
 installed NixOS 26.05 system; it never partitions, formats, or reinstalls it.
 
+## Automated deployment
+
+After cloning, the script performs steps 2–5 below, including the backups and disk
+comparisons. Run on the **Intel laptop as `reed`, without sudo**:
+
+```bash
+cd ~/nixos-config
+git switch thinkbook16-g7
+git pull --ff-only origin thinkbook16-g7
+bash scripts/deploy-thinkbook16-g7.sh
+```
+
+If Git is unavailable outside the shell used to clone, first enter `nix-shell -p git`.
+The deployment script loads Git and jq in a temporary pinned Nix shell if needed.
+It requests your sudo password for the privileged steps; no credentials are stored.
+
+The script checks the username, Intel 125U CPU, Lenovo model, UEFI boot, NixOS version,
+branch, clean tracked files, mounted partitions, and existing `/boot` permissions.
+It preserves `/etc/nixos`, backs up the configuration under `/var/lib/thinkbook16-g7`,
+and protects both the original minimal generation and this run's starting generation
+against garbage collection. The latter also has a `pre-deploy-*` GC root printed in
+the log. An identical host hardware file is reused; a different file is never
+overwritten. The built system must match the evaluated derivation, and its Hyprland
+checker must report `config ok` before home files or boot entries are changed.
+
+Builds use at most two concurrent jobs with two cores each to limit compilation
+pressure on the 16 GiB machine. Existing desktop files are backed up by the desktop
+installer on each full run. The script prepares the next boot with `nixos-rebuild
+boot`; it does not switch running services or reboot automatically.
+
+Wait for **`READY TO REBOOT`**, then:
+
+```bash
+sudo reboot
+```
+
+Select Hyprland in Ly and log in as `reed`. Continue with the hardware checks in
+step 6 below. If the script reports an error, do not reboot yet; retain the log at
+`.validation/deploy-*/deploy.log` and the printed backup paths. The rollback section
+below applies to script deployments as well as manual ones.
+
+Optional: `bash scripts/deploy-thinkbook16-g7.sh --build-only` makes backups, imports
+hardware, evaluates, builds, and checks Hyprland, then stops before desktop/boot
+installation. Run without that option to finish. `--help` makes no changes.
+
 ## 1. Network, Git, and branch
 
 ```bash

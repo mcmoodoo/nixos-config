@@ -20,6 +20,7 @@ service restart, firmware change, or disk operation was performed on that machin
 | Hyprland 0.55.4 `--verify-config` | Passed: `config ok`; compositor was not started |
 | Hyprlock option fields | Checked against the pinned 0.9.5 upstream parser |
 | Bash syntax and ShellCheck for desktop install/restore scripts | Passed |
+| Automated deployment script syntax, ShellCheck, and safeguard tests | Passed; see below |
 | Desktop JSON, TOML, and Lua syntax | Passed |
 | Gitleaks secret scan of staged changes | Passed |
 
@@ -100,3 +101,28 @@ profile was changed. Temporary sources and reports under `.validation/` are igno
   workloads. No private account state was copied or published.
 
 The [deployment guide](thinkbook16-g7.md) includes the exact commands and rollback.
+
+## Automated deployment script
+
+`scripts/deploy-thinkbook16-g7.sh` was checked with Bash syntax validation and
+ShellCheck. Seven tests exercise its helpers using files under `.validation/`, fake
+compositor executables, and a file-operation-only sudo substitute. They cover:
+
+- Rejecting the original AMD machine, wrong users, other CPUs/models, non-UEFI boots,
+  and incorrect NixOS versions.
+- Importing hardware repeatably without overwriting different files or symlinks.
+- Comparing resolved filesystem paths and rejecting mismatched devices, loose EFI
+  permissions, encryption, swap/resume changes, and incorrect user settings.
+- Preserving configuration snapshots and the first minimal generation across reruns.
+- Stopping before installation when Hyprland reports an error even with exit status 0.
+
+Run these non-activating tests with:
+
+```bash
+shellcheck scripts/*.sh
+python3 -m unittest discover -s tests -p 'test_deploy_script.py' -v
+```
+
+The real deployment pipeline was **not run** on the original laptop. Only its host
+refusal was exercised there. Target boot installation and hardware behavior still
+require running the script on the Intel machine; the earlier limitations remain.

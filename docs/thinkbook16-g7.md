@@ -49,6 +49,20 @@ Optional: `bash scripts/deploy-thinkbook16-g7.sh --build-only` makes backups, im
 hardware, evaluates, builds, and checks Hyprland, then stops before desktop/boot
 installation. Run without that option to finish. `--help` makes no changes.
 
+### Retrying the Python documentation build failure
+
+If an earlier run stopped while building `python3.11-3.11.16-doc` with a
+Sphinx/Docutils `TypeError` mentioning `NoneType`, pull the branch and rerun the
+same deployment script. This is the known [Nixpkgs documentation build
+failure](https://github.com/NixOS/nixpkgs/issues/499166). The Intel host now disables
+optional offline HTML/package documentation; Python, applications, man pages, and
+info pages remain available. This also omits the local HTML NixOS manual and
+`nixos-help`; the online manual and `man configuration.nix` remain available.
+
+A failure at the build stage occurs before desktop installation or boot changes.
+Rerunning preserves the existing hardware file and original fallback generation,
+and Nix reuses completed downloads/builds. Wait for `READY TO REBOOT` as usual.
+
 ## 1. Network, Git, and branch
 
 ```bash

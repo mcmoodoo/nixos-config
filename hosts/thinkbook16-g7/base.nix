@@ -44,6 +44,11 @@
   # Keep the minimal installation's fallback until migration is accepted.
   nix.gc.automatic = false;
 
+  # Python 3.11's optional HTML docs fail in Sphinx/Docutils on this pin.
+  # Keep Python and man/info pages; remove this workaround once upstream is fixed.
+  # https://github.com/NixOS/nixpkgs/issues/499166
+  documentation.doc.enable = false;
+
   users.mutableUsers = true;
   users.users.reed = {
     isNormalUser = true;

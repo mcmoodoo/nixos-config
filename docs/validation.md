@@ -126,3 +126,25 @@ python3 -m unittest discover -s tests -p 'test_deploy_script.py' -v
 The real deployment pipeline was **not run** on the original laptop. Only its host
 refusal was exercised there. Target boot installation and hardware behavior still
 require running the script on the Intel machine; the earlier limitations remain.
+
+## Target build failure: Python documentation
+
+The first target build reported `python3.11-3.11.16-doc` failing with a
+Sphinx/Docutils `TypeError: int() ... not 'NoneType'`. This matches
+[Nixpkgs issue 499166](https://github.com/NixOS/nixpkgs/issues/499166).
+The Intel host now sets `documentation.doc.enable = false`, omitting optional
+offline package/HTML documentation, including the HTML NixOS manual. Python,
+applications, man pages (including `configuration.nix`), and info pages remain.
+
+Validation after the workaround:
+
+- All Intel fixture assertions and complete system derivation evaluation passed.
+- Dependency graphs were instantiated and inspected without building or activating
+  a system. The failed Python documentation derivation was present before the
+  change and absent from the complete build graph afterward.
+- The Python 3.11 interpreter output path is identical before and after the change.
+- The original checkout's file hashes, uncommitted work, HEAD, and running system
+  link remain unchanged.
+
+The full target build must be retried on the Intel laptop. Removing this known
+blocker does not establish that every remaining package builds successfully.

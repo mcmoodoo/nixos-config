@@ -1,1 +1,7 @@
 secrets/*.env
+
+# Target-generated hardware belongs only on the target, never copied from AMD.
+/hosts/thinkbook16-g7/hardware-configuration.nix
+/.validation/
+/result
+/result-*

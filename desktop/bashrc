@@ -1,0 +1,108 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+#
+alias ls='ls --color=auto'
+alias l='eza -l'
+alias ll='eza -al'
+alias grep='grep --color=auto'
+
+alias z="zellij"
+alias tf="terraform"
+alias y='yazi'
+
+alias claude-wild='claude --dangerously-skip-permissions'
+
+PS1='[\u@\h \W]\$ '
+
+# alias fzf_search='fzf --preview "bat --style=numbers --color=always --line-range :100 {}"'
+eval "$(fzf --bash)"
+
+# bash-completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+# source /usr/share/fzf/completion.bash
+# source /usr/share/fzf/key-bindings.bash
+
+# powerline
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+    source /usr/share/powerline/bindings/bash/powerline.sh
+fi
+
+eval "$(starship init bash)"
+# . "$HOME/.cargo/env"
+
+timer() {
+    local seconds=0
+    while true; do
+        clear
+        echo "Elapsed: $seconds seconds"
+        sleep 1
+        ((seconds++))
+    done
+}
+
+sift_secrets() {
+    tee >(trufflehog stdin) >(gitleaks stdin) | cat >/dev/null
+}
+
+wifi_pass() {
+    if [ -z "$1" ]; then
+        echo "Usage: wifi_pass <wifi-name>"
+        return 1
+    fi
+    nmcli -s -g 802-11-wireless-security.psk connection show "$1"
+}
+
+alias lg='lazygit'
+
+export EDITOR=nvim
+
+export NIXOS_OZONE_WL=1
+export MOZ_ENABLE_WAYLAND=1
+
+export PATH="$PATH:$HOME/.foundry/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
+
+alias fix_airpods='systemctl --user restart pipewire pipewire-pulse.service wireplumber.service'
+alias wrapped_shell='bwrap --ro-bind /usr /usr --ro-bind /bin /bin --ro-bind /lib /lib --ro-bind /lib64 /lib64 --dev /dev --proc /proc --tmpfs /tmp /bin/bash'
+
+# Optional local secrets and completion scripts are never stored in this repository.
+[[ -f "$HOME/.env" ]] && source "$HOME/.env"
+for completion in "$HOME"/.completions/*; do
+    [[ -f "$completion" ]] && source "$completion"
+done
+unset completion
+
+# ENV
+export HYPRSHOT_DIR="$HOME/Pictures"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+
+set -o vi
+
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.bin"
+export PATH="$PATH:$HOME/.bin/byn"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+command -v aws_completer >/dev/null && complete -C "$(command -v aws_completer)" aws
+
+# source $HOME/.config/broot/launcher/bash/br
+
+export NARGO_HOME="$HOME/.nargo"
+
+export PATH="$PATH:$NARGO_HOME/bin"
+
+GRAPH_AC_BASH_SETUP_PATH=$HOME/.cache/@graphprotocol/graph-cli/autocomplete/bash_setup && test -f $GRAPH_AC_BASH_SETUP_PATH && source $GRAPH_AC_BASH_SETUP_PATH # graph autocomplete setupeval
+SQD_AC_BASH_SETUP_PATH=$HOME/.cache/@subsquid/cli/autocomplete/bash_setup && test -f $SQD_AC_BASH_SETUP_PATH && source $SQD_AC_BASH_SETUP_PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+
+# The next line enables shell command completion for gcloud.

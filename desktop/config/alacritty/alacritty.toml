@@ -1,0 +1,55 @@
+[window]
+dimensions = { columns = 120, lines = 30 }  # Window dimensions (columns x lines)
+padding = { x = 5, y = 5 }  # Padding around the text
+decorations = "full"  # Window decorations: full, none, transparent
+startup_mode = "Windowed"  # Startup mode: Maximized, Fullscreen, Windowed
+opacity = 0.88
+blur = true
+
+[font]
+# Font family and style
+normal = { family = "Hack Nerd Font", style = "Regular" }  # Replace with your preferred Nerd Font
+bold = { family = "Hack Nerd Font", style = "Bold" }
+italic = { family = "Hack Nerd Font", style = "Italic" }
+size = 12.0  # Font size
+
+[colors.primary]
+background = "0x2E3440"  # Dark background
+foreground = "0xD8DEE9"  # Light text
+
+[colors.normal]
+black = "0x3B4252"
+red = "0xBF616A"
+green = "0xA3BE8C"
+yellow = "0xEBCB8B"
+blue = "0x81A1C1"
+magenta = "0xB48EAD"
+cyan = "0x88C0D0"
+white = "0xE5E9F0"
+
+[colors.bright]
+black = "0x4C566A"
+red = "0xBF616A"
+green = "0xA3BE8C"
+yellow = "0xEBCB8B"
+blue = "0x81A1C1"
+magenta = "0xB48EAD"
+cyan = "0x8FBCBB"
+white = "0xECEFF4"
+
+[cursor]
+style = "Block"  # Cursor style: Block, Underline, Beam
+#blinking = false  # Blinking cursor: true or false
+
+[scrolling]
+history = 10000  # Lines of scrollback history
+multiplier = 3  # Speed of scrolling
+
+[terminal]
+# Permit OSC 52 copying without allowing applications to read the host clipboard.
+osc52 = "OnlyCopy"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

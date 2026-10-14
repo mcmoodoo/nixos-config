@@ -73,6 +73,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.fwupd.enable = true;
+  services.trezord.enable = true;
   services.displayManager.ly.enable = true;
   services.tlp.enable = true;
   services.printing.enable = true;
@@ -107,6 +108,13 @@
       ];
     };
   };
+
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
   systemd.services.ollama = {
     description = "Ollama Local Server";
@@ -246,6 +254,7 @@
     btop-rocm
     fd
     bat
+    gnumeric
     html-tidy
     envsubst
     yq-go
@@ -303,6 +312,8 @@
     inkscape
     freecad
     wireguard-tools
+    trezor-suite
+    scrcpy
   ];
 
   fonts.packages = with pkgs; [
